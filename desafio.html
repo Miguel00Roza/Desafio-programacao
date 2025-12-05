@@ -1,0 +1,62 @@
+<script>
+
+    let alunos = ["João", "Maria", "Pedro", "Ana", "Carlos", "Beatriz"];
+    let frequencia = [[], [], [], [], [], []]; // 20 dias para cada aluno
+    let totalDias = 20;
+    let qtdAlunos = alunos.length // Salva o numero de alunos agora para fazer verificação no futuro
+    let pctSitu = [[],[],[],[],[],[]]
+
+    function adicionarPresenca() {
+        let j = 0;
+        // j equivale a qual posição lista de presença da matriz frequencia esta: 0-João 1-Maria 
+        for (let aluno of alunos) {
+            if (frequencia[j].length != 0) {
+                j++;
+                continue;
+                // verifica se o aluno já tem as faltas cadastradas ( vai ser utilizado quando implementarmos um novo aluno )
+            } else {
+                for (let k = 1; k <= totalDias; k++) {
+                    let hoje = prompt(`Situação do aluno ${aluno} no dia ${k} ( P-presente F-faltou )`).toUpperCase()
+                    if (hoje == "P" || hoje == "F") {
+                        console.log("digitou Certo");
+                    } else {
+                        alert("Digite apenas P ou F!");
+                        alert("Perguntando novamente")
+                        k--
+                        // Caso o usuario digite algo diferente de P ou F ele perguntara sobre a situação do aluno no mesmo dia
+                    }
+                    frequencia[j].push(hoje);
+                }
+            }
+
+            j++
+        }
+        // Pergunta a frequencia de todos os alunos pelos 20 dias 
+    }
+
+    function adicionarAluno() {
+        let nomeNovoAluno = prompt("Digite o nome do novo aluno");
+        alunos.push(nomeNovoAluno);
+        frequencia.push([]);
+        pctSitu.push([]);
+
+    }
+    function gerarRelatiorio() {
+        for (let aluno of alunos) {
+            for (let freq of frequencia) {
+                let presencas = 0;
+                let faltas = 0;
+                for (let tot of freq) {
+                    if (tot == "P") {
+                        presencas++;
+                    } else {
+                        faltas++;
+                    }
+                }
+
+            }
+        }
+
+    }
+
+</script>
