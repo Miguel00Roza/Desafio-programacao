@@ -53,10 +53,38 @@
                         faltas++;
                     }
                 }
-
             }
         }
-
     }
+
+// -----------------------------------------------------------
+// calcular porcento de presença
+// -----------------------------------------------------------
+function calcularPercentual(indexAluno) {
+    let presencas = 0;
+
+    for (let dia of frequencia[indexAluno]) {
+        if (dia === "P") {
+            presencas++;
+        }
+    }
+
+    return (presencas / totalDias) * 100;
+}
+
+ // -----------------------------------------------------------
+// alunos com menos de 60%
+// -----------------------------------------------------------
+function alunosEmRisco() {
+    documant.write("======= ALUNOS EM RISCO (<60%) =======");
+
+    for (let i = 0; i < alunos.length; i++) {
+        let pct = calcularPercentual(i);
+
+        if (pct < 60) {
+            documant.write(`${alunos[i]} → ${pct.toFixed(1)}% (RISCO)`);
+        }
+    }
+}
 
 </script>
