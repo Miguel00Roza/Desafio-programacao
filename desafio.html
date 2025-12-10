@@ -41,25 +41,22 @@
         pctSitu.push([]);
 
     }
-    function gerarRelatiorio() {
-        for (let aluno of alunos) {
-            for (let freq of frequencia) {
-                let presencas = 0;
-                let faltas = 0;
-                for (let tot of freq) {
-                    if (tot == "P") {
-                        presencas++;
-                    } else {
-                        faltas++;
-                    }
-                }
-            }
-        }
-    }
 
-// -----------------------------------------------------------
-// calcula o porcento de presença
-// -----------------------------------------------------------
+    function removerAluno() {
+        let alunosString = "";
+        for(let i = 0; i < alunos.length; i++) {
+            alunosString += `${i}-${alunos[i]}\n`;
+        }
+        let index = Number(prompt("Digite o numero do aluno que você quer remover:\n" + alunosString));
+
+        alunos.splice(index, 1)
+        frequencia.splice(index, 1)
+        pctSitu.splice(index, 1)
+
+        alert("Aluno removido com sucesso")
+    }
+    
+    
 function calcularPercentual(indexAluno) {
     let presencas = 0;
 
@@ -69,22 +66,48 @@ function calcularPercentual(indexAluno) {
         }
     }
 
-    return (presencas / totalDias) * 100;
+    let perct = ((presencas / totalDias) * 100).toFixed(2);
+    return [perct, presencas]
 }
 
- // -----------------------------------------------------------
-// alunos com menos de 60%
-// -----------------------------------------------------------
-function alunosEmRisco() {
-    documant.write("======= ALUNOS EM RISCO (<60%) =======");
-
-    for (let i = 0; i < alunos.length; i++) {
-        let pct = calcularPercentual(i);
-
-        if (pct < 60) {
-            documant.write(`${alunos[i]} → ${pct.toFixed(1)}% (RISCO)`);
+function gerarRelatiorio() {
+        for (let i = 0; i < alunos.length; i++) {
+            let porcentagem = calcularPercentual(i)[0];
+            let diasPresentes = calcularPercentual(i)[1];
+            let diasAusentes = totalDias - diasPresentes;
+            alert(`
+            -------Aluno ${i + 1}: ${alunos[i]}-------\n
+            Dias Presentes: ${diasPresentes},\n
+            Dias Ausentes: ${diasAusentes},\n
+            Frequencia: ${porcentagem}%,\n
+            Sitação: ${(porcentagem < 60) ? "!EM RISCO!" : "De boas"};
+            `);
         }
     }
-}
 
+
+while (true) {
+    let opc = Number(prompt("O que você gostaria de fazer?\n 0-Sair\n 1-Registrar a frequencia dos alunos\n 2-Adicionar Aluno\n 3-Remover Aluno\n 4-Gerar relatorio"));
+
+    let v = 0;
+    if (opc == 0) {
+        break
+    } else if (opc == 1) {
+        adicionarPresenca()
+        v++;
+    } else if (opc == 2) {
+        adicionarAluno()
+    } else if (opc == 3) {
+        removerAluno()
+    } else if (opc == 4) {
+        if (v < 1) {
+            alert("Você não cadastrou nada para gerar um relatorio")
+        } else {
+            gerarRelatiorio()
+        }
+        
+    } else {
+        alert("Opção invalida")
+    }
+}
 </script>
