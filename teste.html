@@ -5,7 +5,6 @@ let alunos = ["João", "Maria", "Pedro", "Ana", "Carlos"];
 let notas = [];
 
 // ----------------------------------------------
-// ----------------------------------------------
 function validarNota(nota) {
     while (nota < 0 || nota > 10 || isNaN(nota)) {
         nota = Number(prompt("Nota inválida!(Tinha que ser o jumento do usuario msm) <br> Digite uma nota entre 0 e 10:"));
@@ -13,7 +12,7 @@ function validarNota(nota) {
     return nota;
 }
 
-// ----------------------------------------------
+
 // ----------------------------------------------
 function cadastrarNotas() {
     notas = []; // limpa antes de registrar
@@ -28,7 +27,7 @@ function cadastrarNotas() {
     }
 }
 
-// ----------------------------------------------
+
 // ----------------------------------------------
 function calcularMedia(arrayNotas) {
     let soma = 0;
@@ -38,7 +37,7 @@ function calcularMedia(arrayNotas) {
     return soma / arrayNotas.length;
 }
 
-// ----------------------------------------------
+
 // ----------------------------------------------
 function classificarDesempenho(media) {
     if (media >= 9) {
@@ -52,7 +51,7 @@ function classificarDesempenho(media) {
     }
 }
 
-// ----------------------------------------------
+
 // ----------------------------------------------
 function gerarRelatorio() {
     document.write("===== RELATÓRIO DE NOTAS =====");
@@ -70,7 +69,7 @@ Classificação: ${classif}
     }
 }
 
-// =====================================================
+
 // =====================================================
 function removerAluno(nome) {
     let index = alunos.indexOf(nome);
@@ -87,7 +86,7 @@ function removerAluno(nome) {
 }
 
 // =====================================================
-// =====================================================
+
 function menu() {
     let opcao;
 
@@ -128,6 +127,5 @@ escolha uma opção:`));
     } while (opcao !== 0);
 }
 
-// inicia o sistema
 menu();
 </script>
