@@ -1,10 +1,9 @@
 <script>
 
     let alunos = ["João", "Maria", "Pedro", "Ana", "Carlos", "Beatriz"];
-    let frequencia = [[], [], [], [], [], []]; // 20 dias para cada aluno
+    let frequencia = [[], [], [], [], [], []];
     let totalDias = 20;
-    let qtdAlunos = alunos.length // Salva o numero de alunos agora para fazer verificação no futuro
-    let pctSitu = [[],[],[],[],[],[]]
+    let pctSitu = [[],[],[],[],[],[]];
 
     function adicionarPresenca() {
         let j = 0;
@@ -72,7 +71,7 @@ function calcularPercentual(indexAluno) {
 
 function gerarRelatiorio() {
         for (let i = 0; i < alunos.length; i++) {
-            let [porcentagem, diasPresentes] = calcularPercentual(i);
+            let porcentagem, diasPresentes = calcularPercentual(i);
             let diasAusentes = totalDias - diasPresentes;
             alert(`
             -------Aluno ${i + 1}: ${alunos[i]}-------\n
@@ -88,22 +87,16 @@ function gerarRelatiorio() {
 while (true) {
     let opc = Number(prompt("O que você gostaria de fazer?\n 0-Sair\n 1-Registrar a frequencia dos alunos\n 2-Adicionar Aluno\n 3-Remover Aluno\n 4-Gerar relatorio"));
 
-    let v = 0;
     if (opc == 0) {
         break
     } else if (opc == 1) {
         adicionarPresenca()
-        v++;
     } else if (opc == 2) {
         adicionarAluno()
     } else if (opc == 3) {
         removerAluno()
     } else if (opc == 4) {
-        if (v < 1) {
-            alert("Você não cadastrou nada para gerar um relatorio")
-        } else {
-            gerarRelatiorio()
-        }
+        gerarRelatiorio()
         
     } else {
         alert("Opção invalida")
