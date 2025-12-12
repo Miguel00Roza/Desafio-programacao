@@ -34,14 +34,14 @@
     }
 
     function adicionarAluno() {
+        let nomeNovoAluno = prompt("Digite o nome do novo aluno");
         while(true){
-            let nomeNovoAluno = prompt("Digite o nome do novo aluno");
-
-            if (typeof(nomeNovoAluno) != "string"){
+            if ( !(isNaN(nomeNovoAluno)) ){
             alert("Digite um nome não um numero!");
-                continue
+                nomeNovoAluno = prompt("Digite o nome do novo aluno");
         } else if (nomeNovoAluno.length < 3) {
                 alert("Isso não é um nome, digite um nome de verdade");
+                nomeNovoAluno = prompt("Digite o nome do novo aluno");
         } else {
                 break
         }
@@ -59,13 +59,14 @@
         for(let i = 0; i < alunos.length; i++) {
             alunosString += `${i}-${alunos[i]}\n`;
         }
+        let index = Number(prompt("Digite o numero do aluno que você quer remover:\n" + alunosString));
         while (true) {
-            let index = Number(prompt("Digite o numero do aluno que você quer remover:\n" + alunosString));
-
-            if(typeof(index) != "number") {
+            if( isNaN(index) ) {
                 alert("Digite o numero do aluno não o nome dele");
+                index = Number(prompt("Digite o numero do aluno que você quer remover:\n" + alunosString));
             } else if (index < 0 || index > alunos.length) {
                 alert("Digite um numero equivalente ao numero de alunos (O numero de cada aluno está ao seu lado");
+                index = Number(prompt("Digite o numero do aluno que você quer remover:\n" + alunosString));
             } else {
                 break
             }
