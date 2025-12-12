@@ -34,10 +34,23 @@
     }
 
     function adicionarAluno() {
-        let nomeNovoAluno = prompt("Digite o nome do novo aluno");
+        while(true){
+            let nomeNovoAluno = prompt("Digite o nome do novo aluno");
+
+            if (typeof(nomeNovoAluno) != "string"){
+            alert("Digite um nome não um numero!");
+                continue
+        } else if (nome.length < 3) {
+                alert("Isso não é um nome, digite um nome de verdade");
+        } else {
+                break
+        }
+        }
+        
         alunos.push(nomeNovoAluno);
         frequencia.push([]);
         pctSitu.push([]);
+        alert("Aluno adicionado");
 
     }
 
@@ -46,11 +59,22 @@
         for(let i = 0; i < alunos.length; i++) {
             alunosString += `${i}-${alunos[i]}\n`;
         }
-        let index = Number(prompt("Digite o numero do aluno que você quer remover:\n" + alunosString));
+        while (true) {
+            let index = Number(prompt("Digite o numero do aluno que você quer remover:\n" + alunosString));
 
-        alunos.splice(index, 1)
-        frequencia.splice(index, 1)
-        pctSitu.splice(index, 1)
+            if(typeof(index) != "number") {
+                alert("Digite o numero do aluno não o nome dele");
+            } else if (index < 0 || index > alunos.length) {
+                alert("Digite um numero equivalente ao numero de alunos (O numero de cada aluno está ao seu lado");
+            } else {
+                break
+            }
+        }
+        
+
+        alunos.splice(index, 1);
+        frequencia.splice(index, 1);
+        pctSitu.splice(index, 1);
 
         alert("Aluno removido com sucesso")
     }
