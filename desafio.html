@@ -15,7 +15,7 @@
                 // verifica se o aluno já tem as faltas cadastradas ( vai ser utilizado quando implementarmos um novo aluno )
             } else {
                 for (let k = 1; k <= totalDias; k++) {
-                    let hoje = prompt(`Situação do aluno ${aluno} no dia ${k} ( P-presente F-faltou )`).toUpperCase()
+                    let hoje = prompt(`Situação do aluno ${aluno} no dia ${k} ( P-presente F-faltou )`).toUpperCase().trim()
                     if (hoje == "P" || hoje == "F") {
                         console.log("digitou Certo");
                     } else {
@@ -34,14 +34,14 @@
     }
 
     function adicionarAluno() {
-        let nomeNovoAluno = prompt("Digite o nome do novo aluno");
+        let nomeNovoAluno = prompt("Digite o nome do novo aluno").trim();
         while(true){
             if ( !(isNaN(nomeNovoAluno)) ){
             alert("Digite um nome não um numero!");
-                nomeNovoAluno = prompt("Digite o nome do novo aluno");
+                nomeNovoAluno = prompt("Digite o nome do novo aluno").trim();
         } else if (nomeNovoAluno.length < 3) {
                 alert("Isso não é um nome, digite um nome de verdade");
-                nomeNovoAluno = prompt("Digite o nome do novo aluno");
+                nomeNovoAluno = prompt("Digite o nome do novo aluno").trim();
         } else {
                 break
         }
@@ -59,14 +59,14 @@
         for(let i = 0; i < alunos.length; i++) {
             alunosString += `${i}-${alunos[i]}\n`;
         }
-        let index = Number(prompt("Digite o numero do aluno que você quer remover:\n" + alunosString));
+        let index = Number(prompt("Digite o numero do aluno que você quer remover:\n" + alunosString)).trim();
         while (true) {
             if( isNaN(index) ) {
                 alert("Digite o numero do aluno não o nome dele");
-                index = Number(prompt("Digite o numero do aluno que você quer remover:\n" + alunosString));
+                index = Number(prompt("Digite o numero do aluno que você quer remover:\n" + alunosString)).trim();
             } else if (index < 0 || index > alunos.length) {
                 alert("Digite um numero equivalente ao numero de alunos (O numero de cada aluno está ao seu lado");
-                index = Number(prompt("Digite o numero do aluno que você quer remover:\n" + alunosString));
+                index = Number(prompt("Digite o numero do aluno que você quer remover:\n" + alunosString)).trim();
             } else {
                 break
             }
@@ -110,9 +110,10 @@ function gerarRelatiorio() {
 
 
 while (true) {
-    let opc = Number(prompt("O que você gostaria de fazer?\n 0-Sair\n 1-Registrar a frequencia dos alunos\n 2-Adicionar Aluno\n 3-Remover Aluno\n 4-Gerar relatorio"));
-
-    if (opc == 0) {
+    let opc = Number(prompt("O que você gostaria de fazer?\n 0-Sair\n 1-Registrar a frequencia dos alunos\n 2-Adicionar Aluno\n 3-Remover Aluno\n 4-Gerar relatorio")).trim();
+    if (isNaN(opc)) {
+        alert("Digite um numero não um texto");
+    } else if (opc == 0) {
         break
     } else if (opc == 1) {
         adicionarPresenca()
